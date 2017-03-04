@@ -3,6 +3,7 @@ import os
 import pandas as pd
 import matplotlib.pyplot as plt
 
+import flatten_json as fj
 
 def time_convert(military_time):
     military_time = str(military_time)
@@ -42,14 +43,25 @@ def process_df(df_in):
 
 
 if __name__ == '__main__':
+    buoy_file = os.path.join(os.pardir, 'data', '41010.json')
+    df_buoy = pd.DataFrame(fj.main(buoy_file))
+
     filename = os.path.join(os.pardir, 'data', 'hurricane_kate.csv')
     df = pd.read_csv(filename)
     df = process_df(df)
 
-    plt.scatter(-df['longitude'].values, df['latitude'])
-    plt.xlabel('Longitude')
-    plt.ylabel('Latitude')
-    plt.title('Hurricane Kate')
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+    ax.scatter(-df['longitude'].values, df['latitude'])
+    ax.set_xlabel('Longitude')
+    ax.set_ylabel('Latitude')
+    ax.set_title('Hurricane Kate')
+
+    buoy_lon = df_buoy.iloc[0]['longitude']
+    buoy_lat = df_buoy.iloc[0]['latitude']
+    ax.scatter(buoy_lon, buoy_lat, color='r')
+
+    ax.annotate('41010', (buoy_lon-0.6, buoy_lat+0.6))
 
     savefile = os.path.join(os.pardir, 'images', 'hurricane_kate.png')
     plt.savefig(savefile)
