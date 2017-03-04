@@ -6,14 +6,13 @@ from pandas import DataFrame
 
 
 def main(filename):
-    axis_keys = ["time", "latitude", "longitude"]
     with open(filename) as handle:
         data = simplejson.loads(handle.read())
     return [
-        {
-            k: v
-            for k, v in entry["data"].items() + [(key, entry["axes"][key]) for key in axis_keys]
-        }
+        # Merge two dicitonaries into one.
+        # http://stackoverflow.com/questions/38987/how-to-merge-two-python-dictionaries-in-a-single-expression
+        # A highly dubious approach
+        dict(entry["data"], **entry["axes"])
         for entry in data["entries"]
     ]
 
