@@ -6,12 +6,13 @@ from pandas import DataFrame
 
 
 def main(filename):
+    axis_keys = ["time", "latitude", "longitude"]
     with open(filename) as handle:
         data = simplejson.loads(handle.read())
     return [
         {
             k: v
-            for k, v in entry["data"].items() + [("time", entry["axes"]["time"])]
+            for k, v in entry["data"].items() + [(key, entry["axes"][key]) for key in axis_keys]
         }
         for entry in data["entries"]
     ]
