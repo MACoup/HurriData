@@ -17,6 +17,6 @@ def main(filename):
     ]
 
 if __name__ == '__main__':
-    x = main("32012.json")
+    x = main("../../41008.json")
     pd = DataFrame(x)
     print(pd.head())
