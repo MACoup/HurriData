@@ -12,16 +12,16 @@ from bokeh.models import (
 )
 from bokeh.embed import components
 
-import flatten_json as fj
+import tools.flatten_json as fj
 
 
 API_KEY = os.environ['GOOGLEMAPS_API_KEY']
 
-buoy_file = os.path.join(os.pardir, 'data', '41010.json')
+buoy_file = os.path.join('data', '41010.json')
 df_buoy = pd.DataFrame(fj.main(buoy_file))
 
-filename = os.path.join(os.pardir, 'data', 'hurricane_kate.csv')
-with open('../data/hurricane_df.pkl', 'rb') as f:
+filename = os.path.join('data', 'hurricane_kate.csv')
+with open('data/hurricane_df.pkl', 'rb') as f:
     df = pickle.load(f)
 
 app = Flask(__name__)
@@ -38,7 +38,7 @@ def hurricane_map_plot():
     # For GMaps to function, Google requires you obtain and enable an API key:
 
     plot.api_key = API_KEY
- 
+
     lat = list(df['latitude'].values)
     lon = list(-df['longitude'].values)
     colors = ['b'] * len(lat)
