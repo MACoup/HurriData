@@ -28,7 +28,7 @@ app = Flask(__name__)
 
 
 def hurricane_map_plot():
-    map_options = GMapOptions(lat=28.906000137329102, lng=-78.471000671386719, map_type="roadmap", zoom=5)
+    map_options = GMapOptions(lat=28.906000137329102, lng=-78.471000671386719, map_type="roadmap", zoom=3)
 
     plot = GMapPlot(
         x_range=DataRange1d(), y_range=DataRange1d(), map_options=map_options
