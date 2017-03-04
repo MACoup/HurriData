@@ -1,0 +1,22 @@
+Date,Time (UTC),Latitude (°N),Longitude (°W),Pressure (mb),Wind Speed (kt),Stage
+11-08-2015,1800,22.2,71.5,1010,30,tropical depression
+11-09-2015,0000,22.7,72.4,1010,30,tropical depression
+11-09-2015,0600,23.4,73.7,1010,35,tropical storm
+11-09-2015,1200,24.1,74.8,1008,40,tropical storm
+11-09-2015,1800,25.0,75.7,1008,45,tropical storm
+11-10-2015,0000,26.7,76.2,1006,50,tropical storm
+11-10-2015,0600,28.0,76.2,1003,55,tropical storm
+11-10-2015,1200,29.5,75.4,998,60,tropical storm
+11-10-2015,1800,31.2,74.0,993,60,tropical storm
+11-11-2015,0000,33.1,71.3,990,65,hurricane
+11-11-2015,0600,35.2,67.6,985,70,hurricane
+11-11-2015,1200,36.2,62.5,980,75,hurricane
+11-11-2015,1800,37.6,58.2,980,65,hurricane
+11-12-2015,0000,38.9,55.0,980,65,extratropical
+11-12-2015,0600,40.0,52.0,980,65,extratropical
+11-12-2015,1200,41.3,50.4,981,55,extratropical
+11-12-2015,1800,41.9,49.9,983,55,extratropical
+11-13-2015,0000,41.5,49.2,985,50,extratropical
+11-13-2015,0600,40.8,47.5,985,45,extratropical
+11-13-2015,1200,40.7,45.4,987,45,extratropical
+11-13-2015,1800,,,,,dissipated
