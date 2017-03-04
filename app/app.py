@@ -74,6 +74,9 @@ def main():
     div, script = hurricane_map_plot()
     return render_template('layout.html', div=div, script=script)
 
+def run():
+    app.run(debug=False)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
