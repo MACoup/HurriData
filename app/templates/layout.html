@@ -33,7 +33,6 @@
 	<script src="http://cdn.pydata.org/bokeh/release/bokeh-0.12.4.min.js"></script>
 	<script src="http://cdn.pydata.org/bokeh/release/bokeh-widgets-0.12.4.min.js"></script>
 
-	{{script|safe}}
 </head>
 
 <body>
@@ -59,9 +58,10 @@
 					<li>
 						<a href="/performance"></a>
 					</li> -->
-					<li>
+<!--					<li>
 						Buoys in the Gulf of Mexico and North Atlantic
 					</li>
+-->
 				</ul>
 			</div>
 			<!-- /.navbar-collapse -->
@@ -88,12 +88,13 @@
               <p>Utilizing data set captured from buoys, this tool shows a storm path and locations of data collection buoys.</p>
               <p>Additional functionality: This map would be interactive, data collection points would be colored to match current weather conditions. Conditions update in real time. Slider functionality will allow you to view historical data. Hovering over map points will show data collected at different timepoints.</p>
         </div>
-        <div class="col-md-8">
-          <a href="https://github.com/MACoup/HurriData">Find us on GitHub</a>
-        </div>
 
     <hr>
 
+            <div class="col-md-8">
+<!--		    {% block bokeh %}{% endblock %} -->
+				{{div|safe}}
+            </div>
     <!-- Footer -->
     <footer>
         <div class="row">
@@ -108,23 +109,15 @@
         <!-- Portfolio Item Row -->
         <div class="row">
 
-            <div class="col-md-8">
-<!--		    {% block bokeh %}{% endblock %} -->
-				{{div|safe}}
-            </div>
-
-            <div class="col-md-4">
-                <h3>Implementation</h3>
-		<p>Utilizing data set captured from buoys, this tool shows weather in the Gulf of Mexico and North Atlantic Region</p>
-            </div>
 
         </div>
-
-        <hr>
 
         <!-- Footer -->
         <footer>
             <div class="row">
+				<div class="col-md-8">
+				  <a href="https://github.com/MACoup/HurriData">Find us on GitHub</a>
+				</div>
                 <div class="col-lg-12">
                     <p>&copy;2017 Planeteers<a href=""></a>
 		    </p>
@@ -141,6 +134,8 @@
 
 <!-- Bootstrap Core JavaScript -->
 <script src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>
+
+{{script|safe}}
 
 </body>
 

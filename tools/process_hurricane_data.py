@@ -1,16 +1,17 @@
 import os
 
+import cPickle as pickle
 import pandas as pd
 import matplotlib.pyplot as plt
 
-import tools.flatten_json as fj
+import flatten_json as fj
 
 def time_convert(military_time):
     military_time = str(military_time)
     if len(military_time) == 1:
-        military_time += '0' * (4 - len(military_time))
+	military_time += '0' * (4 - len(military_time))
     elif len(military_time) == 3:
-        military_time = '0' + military_time
+	military_time = '0' + military_time
 
     military_time = military_time[:2] + ':' + military_time[2:]
     military_time += ':00'
@@ -42,7 +43,7 @@ def process_df(df_in):
     return df
 
 
-def main():
+if __name__ == '__main__':
     buoy_file = os.path.join(os.pardir, 'data', '41010.json')
     df_buoy = pd.DataFrame(fj.main(buoy_file))
 
@@ -63,10 +64,10 @@ def main():
 
     ax.annotate('41010', (buoy_lon-0.6, buoy_lat+0.6))
 
+    with open('../data/hurricane_df.pkl', 'wb') as f:
+        pickle.dump(df, f)
+
     savefile = os.path.join(os.pardir, 'images', 'hurricane_kate.png')
     plt.savefig(savefile)
     plt.show()
 
-
-if __name__ == '__main__':
-    main()
