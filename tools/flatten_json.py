@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 from __future__ import print_function
+from itertools import chain
 
 import simplejson
 from pandas import DataFrame
@@ -11,8 +12,7 @@ def main(filename):
     return [
         # Merge two dictionaries into one.
         # http://stackoverflow.com/questions/38987/how-to-merge-two-python-dictionaries-in-a-single-expression
-        # A highly dubious approach
-        dict(entry["data"], **entry["axes"])
+        dict(chain(entry["data"].items(), entry["axes"].items()))
         for entry in data["entries"]
     ]
 

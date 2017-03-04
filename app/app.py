@@ -1,5 +1,7 @@
 import os
 
+import cPickle as pickle
+import pandas as pd
 from flask import Flask
 from flask import render_template
 
@@ -10,6 +12,8 @@ from bokeh.models import (
 )
 from bokeh.embed import components
 
+import flatten_json as fj
+
 
 API_KEY = os.environ['GOOGLEMAPS_API_KEY']
 
@@ -17,35 +21,39 @@ buoy_file = os.path.join(os.pardir, 'data', '41010.json')
 df_buoy = pd.DataFrame(fj.main(buoy_file))
 
 filename = os.path.join(os.pardir, 'data', 'hurricane_kate.csv')
-df = pd.read_csv(filename)
-df = process_df(df)
+with open('../data/hurricane_df.pkl', 'rb') as f:
+    df = pickle.load(f)
 
 app = Flask(__name__)
 
 
 def hurricane_map_plot():
-    map_options = GMapOptions(lat=30.29, lng=-97.73, map_type="roadmap", zoom=11)
+    map_options = GMapOptions(lat=28.906000137329102, lng=-78.471000671386719, map_type="roadmap", zoom=5)
 
     plot = GMapPlot(
         x_range=DataRange1d(), y_range=DataRange1d(), map_options=map_options
     )
-    plot.title.text = "Austin"
+    plot.title.text = "Hurricane Kate"
 
     # For GMaps to function, Google requires you obtain and enable an API key:
 
     plot.api_key = API_KEY
  
-#    colors = ['b'] * len()
-#    lat = 
-#    lon = 
-#    buoy_lat = df_buoy.iloc[0]['latitude']
-#    buoy_lon = df_buoy.iloc[0]['longitude']
-#   
+    lat = list(df['latitude'].values)
+    lon = list(-df['longitude'].values)
+    colors = ['b'] * len(lat)
+    buoy_lat = df_buoy.iloc[0]['latitude']
+    buoy_lon = df_buoy.iloc[0]['longitude']
+
+    lat += [buoy_lat]
+    lon += [buoy_lon]
+    colors += ['r']
+
     source = ColumnDataSource(
         data=dict(
-            lat=[30.29, 30.20, 30.29],
-            lon=[-97.70, -97.74, -97.78],
-            colors=colors,
+            lat=lat,
+            lon=lon,
+#            colors=colors,
         )
     )
 
