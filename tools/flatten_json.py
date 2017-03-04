@@ -9,7 +9,7 @@ def main(filename):
     with open(filename) as handle:
         data = simplejson.loads(handle.read())
     return [
-        # Merge two dicitonaries into one.
+        # Merge two dictionaries into one.
         # http://stackoverflow.com/questions/38987/how-to-merge-two-python-dictionaries-in-a-single-expression
         # A highly dubious approach
         dict(entry["data"], **entry["axes"])
