@@ -3,14 +3,14 @@ import os
 import pandas as pd
 import matplotlib.pyplot as plt
 
-import flatten_json as fj
+import tools.flatten_json as fj
 
 def time_convert(military_time):
     military_time = str(military_time)
     if len(military_time) == 1:
-	military_time += '0' * (4 - len(military_time))
+        military_time += '0' * (4 - len(military_time))
     elif len(military_time) == 3:
-	military_time = '0' + military_time
+        military_time = '0' + military_time
 
     military_time = military_time[:2] + ':' + military_time[2:]
     military_time += ':00'
@@ -42,7 +42,7 @@ def process_df(df_in):
     return df
 
 
-if __name__ == '__main__':
+def main():
     buoy_file = os.path.join(os.pardir, 'data', '41010.json')
     df_buoy = pd.DataFrame(fj.main(buoy_file))
 
@@ -67,3 +67,6 @@ if __name__ == '__main__':
     plt.savefig(savefile)
     plt.show()
 
+
+if __name__ == '__main__':
+    main()
