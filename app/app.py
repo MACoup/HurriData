@@ -45,20 +45,23 @@ def hurricane_map_plot():
     buoy_lat = df_buoy.iloc[0]['latitude']
     buoy_lon = df_buoy.iloc[0]['longitude']
 
-    lat += [buoy_lat]
-    lon += [buoy_lon]
-    colors += ['r']
-
     source = ColumnDataSource(
         data=dict(
             lat=lat,
             lon=lon,
-#            colors=colors,
+        )
+    )
+    source2 = ColumnDataSource(
+        data=dict(
+            lat=[buoy_lat],
+            lon=[buoy_lon],
         )
     )
 
     circle = Circle(x="lon", y="lat", size=15, fill_color="blue", fill_alpha=0.8, line_color=None)
     plot.add_glyph(source, circle)
+    circle2 = Circle(x="lon", y="lat", size=15, fill_color="red", fill_alpha=0.8, line_color=None)
+    plot.add_glyph(source2, circle2)
 
     plot.add_tools(PanTool(), WheelZoomTool(), BoxSelectTool())
 
