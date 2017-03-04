@@ -2,4 +2,4 @@ requests
 simplejson
 pandas
 numpy
-
+bokeh==0.12.4
